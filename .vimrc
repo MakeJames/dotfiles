@@ -36,50 +36,55 @@
 
     " Enable plugins and load plugin for the detected file type.
     filetype plugin on
-    
+
     " Load an indent file for the detected file type.
     filetype indent on
-    
+
     " Turn syntax highlighting on.
     syntax on
-    
+
     " Turn line numbers on.
     set number
-    
+
     " spaces not tabs.
     set expandtab
-    
+
     " set dynamic search.
     set incsearch
-    
+
     " case insensitivity
     set ignorecase
     set smartcase
 
     " no wrap
     set nowrap
-    
+
     " show mode
     set showmode
-    
+
     " set autocompletion
     set wildmode=list:longest
-    
+
     " set colour scheme.
     syntax on
     colorscheme onedark
-    
+
     " airline settings
     let g:airline#extensions#tabline#enabled = 1
     let g:airline_detect_spell=1
     let g:airline_statusline_ontop=1
     let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
-    
+
     " set visual bell
     set visualbell
 
     " NERDTree
     let NERDTreeShowHidden=1
+
+    " show whitespace
+    set list listchars=tab:»-,trail:•,eol:\
+    let c_space_errors = 1
+
 
 " }}}
 
