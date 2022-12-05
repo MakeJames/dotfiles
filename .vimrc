@@ -11,8 +11,11 @@
         Plug 'bling/vim-airline'
         Plug 'tpope/vim-fugitive'
         Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
+        Plug 'davidhalter/jedi-vim'
 
     call plug#end()
+
+    let g:jedi#force_py_version = "3.9"
 
 " }}}
 
@@ -105,3 +108,25 @@
     
 " }}}
 
+" Custom Mappings ---------------------------------------------------------------- {{{
+
+    " Map <leader>
+    let mapleader = ","
+    " cycle windows
+    map <leader>m <C-W>w
+    " refresh Nerdtree
+    map <leader>r :NERDTreeRefreshRoot<CR>
+    " toggle NerdTree
+    map <leader>t :NERDTreeToggle<CR>
+
+    let mapleader = "j"
+    let g:jedi#goto_command = "<leader>d"
+    let g:jedi#goto_assignments_command = "<leader>g"
+    let g:jedi#goto_stubs_command = "<leader>s"
+    let g:jedi#goto_definitions_command = ""
+    let g:jedi#documentation_command = "K"
+    let g:jedi#usages_command = "<leader>n"
+    let g:jedi#completions_command = "<C-Space>"
+    let g:jedi#rename_command = "<leader>r"
+
+" }}}
