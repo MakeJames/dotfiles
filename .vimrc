@@ -12,6 +12,7 @@
         Plug 'tpope/vim-fugitive'
         Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
         Plug 'davidhalter/jedi-vim'
+        Plug 'ekalinin/Dockerfile.vim'
 
     call plug#end()
 
