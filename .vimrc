@@ -24,17 +24,17 @@
 
     " Disable compatibility with vi which can cause unexpected issues.
     set nocompatible
-    
+
     " Show column 80
     highlight ColorColumn ctermbg=grey
     set colorcolumn=80
 
     " Enable type file detection. Vim will try to detect the file type.
     filetype on
-    
+
     " Set shift width to 4 spaces.
     set shiftwidth=4
-    
+
     " Set tab width to 4 columns.
     set tabstop=4
 
@@ -89,10 +89,16 @@
     set list listchars=tab:»-,trail:•,eol:\
     let c_space_errors = 1
 
+" }}}
+
+" LANGUAGE SETTINGS ------------------------------------------------------ {{{
+
+    set spell spelllang=en_gb
 
 " }}}
 
-" VIMSCRIPT -------------------------------------------------------------- {{{
+
+" VIM SCRIPT -------------------------------------------------------------- {{{
 
     " This will enable code folding.
     " Use the marker method of folding.
@@ -115,9 +121,9 @@
     let mapleader = ","
     " cycle windows
     map <leader>m <C-W>w
-    " refresh Nerdtree
+    " refresh NERDTree
     map <leader>r :NERDTreeRefreshRoot<CR>
-    " toggle NerdTree
+    " toggle NERDTree
     map <leader>t :NERDTreeToggle<CR>
 
     let mapleader = "j"
