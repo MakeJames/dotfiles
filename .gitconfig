@@ -1,0 +1,5 @@
+[user]
+	name = makejames
+	email = james@makejames.com
+[init]
+	defaultBranch = main
