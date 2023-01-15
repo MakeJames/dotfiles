@@ -13,6 +13,8 @@
         Plug 'davidhalter/jedi-vim'
         Plug 'ekalinin/Dockerfile.vim'
         Plug 'vim-pandoc/vim-pandoc'
+        Plug 'yegappan/taglist'
+
 
     call plug#end()
 
