@@ -1,6 +1,5 @@
 " MakeJames vim config
 
-
 " PLUGINS ---------------------------------------------------------------- {{{
 
     call plug#begin('~/.vim/plugged')
@@ -13,10 +12,7 @@
         Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
         Plug 'davidhalter/jedi-vim'
         Plug 'ekalinin/Dockerfile.vim'
-<<<<<<< HEAD
-=======
         Plug 'vim-pandoc/vim-pandoc'
->>>>>>> 7ec2493 (INIT: initial commit of vimrc)
 
     call plug#end()
 
@@ -101,10 +97,6 @@
 
 " }}}
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 7ec2493 (INIT: initial commit of vimrc)
 " VIM SCRIPT -------------------------------------------------------------- {{{
 
     " This will enable code folding.
@@ -113,13 +105,14 @@
         autocmd!
         autocmd FileType vim setlocal foldmethod=marker
     augroup END
-    
+
     " Start NERDTree and put the cursor back in the other window.
     autocmd VimEnter * NERDTree | wincmd p
-    
+
     " Exit Vim if NERDTree is the only window remaining in the only tab.
     autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
-    
+
+
 " }}}
 
 " Custom Mappings ---------------------------------------------------------------- {{{
@@ -143,8 +136,5 @@
     let g:jedi#completions_command = "<C-Space>"
     let g:jedi#rename_command = "<leader>r"
 
-<<<<<<< HEAD
-=======
     " pandoc
->>>>>>> 7ec2493 (INIT: initial commit of vimrc)
 " }}}
