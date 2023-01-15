@@ -13,6 +13,10 @@
         Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
         Plug 'davidhalter/jedi-vim'
         Plug 'ekalinin/Dockerfile.vim'
+<<<<<<< HEAD
+=======
+        Plug 'vim-pandoc/vim-pandoc'
+>>>>>>> 7ec2493 (INIT: initial commit of vimrc)
 
     call plug#end()
 
@@ -97,7 +101,10 @@
 
 " }}}
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 7ec2493 (INIT: initial commit of vimrc)
 " VIM SCRIPT -------------------------------------------------------------- {{{
 
     " This will enable code folding.
@@ -136,4 +143,8 @@
     let g:jedi#completions_command = "<C-Space>"
     let g:jedi#rename_command = "<leader>r"
 
+<<<<<<< HEAD
+=======
+    " pandoc
+>>>>>>> 7ec2493 (INIT: initial commit of vimrc)
 " }}}
