@@ -107,6 +107,11 @@
         autocmd FileType vim setlocal foldmethod=marker
     augroup END
 
+    augroup filetype_sql
+        autocmd!
+        autocmd FileType sql setlocal foldmethod=marker
+    augroup END
+
     " Start NERDTree and put the cursor back in the other window.
     autocmd VimEnter * NERDTree | wincmd p
 
