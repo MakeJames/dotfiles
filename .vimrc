@@ -3,7 +3,7 @@
 " PLUGINS ---------------------------------------------------------------- {{{
 
     call plug#begin('~/.vim/plugged')
-    
+
         Plug 'preservim/nerdtree'
         Plug 'joshdick/onedark.vim'
         Plug 'sheerun/vim-polyglot'
@@ -14,7 +14,6 @@
         Plug 'ekalinin/Dockerfile.vim'
         Plug 'vim-pandoc/vim-pandoc'
         Plug 'yegappan/taglist'
-
 
     call plug#end()
 
