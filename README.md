@@ -10,5 +10,5 @@ with `ctags --version`
 ```sh
 # from HOME directory
 apt install vcsh
-vcsh clone git@gitlab.com:makejames/dotfiles.git
+vcsh clone -b main git@gitlab.com:makejames/dotfiles.git
 ```
