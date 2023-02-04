@@ -24,7 +24,8 @@
         Plug 'davidhalter/jedi-vim'
         Plug 'ekalinin/Dockerfile.vim'
         Plug 'vim-pandoc/vim-pandoc'
-        Plug 'yegappan/taglist'
+        Plug 'szw/vim-tags'
+        Plug 'ycm-core/YouCompleteMe'
 
     call plug#end()
 
@@ -106,6 +107,7 @@
 " LANGUAGE SETTINGS ------------------------------------------------------ {{{
 
     set spell spelllang=en_gb
+    set encoding=utf-8
 
 " }}}
 
@@ -155,3 +157,10 @@
 
     " pandoc
 " }}}
+
+" {{{vim-tags
+
+    let g:vim_tags_cache_dir = expand($HOME) . "/.cache"
+
+" vim-tags}}}
+
