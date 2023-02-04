@@ -1,5 +1,7 @@
+[core]
+    excludesfile = $HOME/.gitignore
 [user]
-	name = makejames
-	email = james@makejames.com
+    name = makejames
+    email = james@makejames.com
 [init]
-	defaultBranch = main
+    defaultBranch = main
