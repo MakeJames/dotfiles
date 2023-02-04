@@ -1,6 +1,9 @@
 " MakeJames vim config
 
-" PLUGINS ---------------------------------------------------------------- {{{
+set background=dark
+set t_Co=256
+
+" Plug-ins ---------------------------------------------------------------- {{{
 
     " Install vim-plug if not found
     if empty(glob('~/.vim/autoload/plug.vim'))
@@ -8,7 +11,7 @@
         \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
     endif
 
-    " Run PlugInstall if there are missing plugins
+    " Run PlugInstall if there are missing plug-ins
     autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
         \| PlugInstall --sync | source $MYVIMRC
     \| endif
@@ -16,7 +19,13 @@
     call plug#begin('~/.vim/plugged')
 
         Plug 'preservim/nerdtree'
+        " colour themes
         Plug 'joshdick/onedark.vim'
+        Plug 'sainnhe/everforest'
+        Plug 'nanotech/jellybeans.vim'
+        Plug 'sainnhe/edge'
+        Plug 'jacoborus/tender.vim'
+
         Plug 'sheerun/vim-polyglot'
         Plug 'bling/vim-airline'
         Plug 'tpope/vim-fugitive'
@@ -30,6 +39,19 @@
     call plug#end()
 
     let g:jedi#force_py_version = "3.9"
+
+" }}}
+
+" Colour Scheme ------------------------------------------- {{{
+
+    " set termguicolors
+    " let ayucolor="dark"
+    " colorscheme ayu
+
+    " set colour scheme.
+    syntax on
+    " colorscheme onedark
+    colorscheme jellybeans
 
 " }}}
 
@@ -81,10 +103,6 @@
 
     " set autocompletion
     set wildmode=list:longest
-
-    " set colour scheme.
-    syntax on
-    colorscheme onedark
 
     " airline settings
     let g:airline#extensions#tabline#enabled = 1
