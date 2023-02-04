@@ -136,6 +136,7 @@
 
 " Custom Mappings ---------------------------------------------------------------- {{{
 
+    let maplocalleader = "\\"
     " Map <leader>
     let mapleader = ","
     " cycle windows
@@ -155,7 +156,6 @@
     let g:jedi#completions_command = "<C-Space>"
     let g:jedi#rename_command = "<leader>r"
 
-    " pandoc
 " }}}
 
 " {{{vim-tags
@@ -164,3 +164,12 @@
 
 " vim-tags}}}
 
+" {{{pandoc
+
+    if !exists('g:ycm_semantic_triggers')
+        let g:ycm_semantic_triggers = {}
+    endif
+    let g:ycm_semantic_triggers.pandoc = ['@']
+    let g:ycm_filetype_blacklist = {}
+
+" pandoc}}}
