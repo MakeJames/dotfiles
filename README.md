@@ -9,8 +9,9 @@ Before getting started, this will splat over the top of pre-existing files. Make
 sure that you have made note of or copied anything that you would prefer not
 to loose. Check the repository that you are cloning into for:
 
-* `.vimrc`
+* `.bash_aliases`
 * `.gitconfig`
+* `.vimrc`
 * `README.md`
 
 ### Ctags
