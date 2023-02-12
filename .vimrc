@@ -18,7 +18,9 @@ set t_Co=256
 
     call plug#begin('~/.vim/plugged')
 
+        " file explorer
         Plug 'preservim/nerdtree'
+
         " colour themes
         Plug 'joshdick/onedark.vim'
         Plug 'sainnhe/everforest'
@@ -26,15 +28,30 @@ set t_Co=256
         Plug 'sainnhe/edge'
         Plug 'jacoborus/tender.vim'
 
+        Plug 'lervag/vimtex'
         Plug 'sheerun/vim-polyglot'
+
+        " status line improvements
         Plug 'bling/vim-airline'
+
+        " A git plug-in
         Plug 'tpope/vim-fugitive'
+
+        " preview markdown files
         Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
+
+        " awesome python plug-in
         Plug 'davidhalter/jedi-vim'
+
+        " interact with python virtual environments
+        Plug 'petobens/poet-v'
+
         Plug 'ekalinin/Dockerfile.vim'
         Plug 'vim-pandoc/vim-pandoc'
         Plug 'szw/vim-tags'
-        Plug 'ycm-core/YouCompleteMe'
+
+        " file icons
+        Plug 'ryanoasis/vim-devicons'
 
     call plug#end()
 
@@ -51,7 +68,7 @@ set t_Co=256
     " set colour scheme.
     syntax on
     " colorscheme onedark
-    colorscheme jellybeans
+    colorscheme edge
 
 " }}}
 
@@ -191,3 +208,17 @@ set t_Co=256
     let g:ycm_filetype_blacklist = {}
 
 " pandoc}}}
+
+" {{{poet-v
+
+    let g:poetv_executables = ['poetry', ]
+
+" poet-v}}}
+
+" {{{devicons
+
+    " set guifont=DroidSansMono_Nerd_Font:h11
+    set guifont=DroidSansMono\ Nerd\ Font
+    let g:airline_powerline_fonts = 1
+
+" devicons}}}
