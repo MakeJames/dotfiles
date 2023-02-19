@@ -141,6 +141,9 @@ set t_Co=256
     set spell spelllang=en_gb
     set encoding=utf-8
 
+    " needed for vim-polyglot
+    set nocompatible
+
 " }}}
 
 " VIM SCRIPT -------------------------------------------------------------- {{{
@@ -168,6 +171,8 @@ set t_Co=256
 
 " Custom Mappings ---------------------------------------------------------------- {{{
 
+
+    map % :source %<CR>
 
     let maplocalleader = "\\"
     " Map <leader>
@@ -210,7 +215,6 @@ set t_Co=256
     let g:buffet_powerline_separators=1
 " }}}
 
-
 " {{{vim-tags
 
     let g:vim_tags_cache_dir = expand($HOME) . "/.cache"
@@ -232,6 +236,10 @@ set t_Co=256
 " {{{poet-v
 
     let g:poetv_executables = ['poetry', ]
+
+    let g:poetv_auto_activate = 1
+
+
 
 " poet-v}}}
 
