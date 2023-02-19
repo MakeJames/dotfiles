@@ -1,8 +1,5 @@
 # makejames bash aliases
 
-# set prompt style
-export PS1="\n\e[1;38;5;40m\]\w \e[0;0m\]\e[4;38;5;8m\]\$(git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/')\e[1;00m\]\n\e[0;38;5;25m\]\d \t\n\e[1;38;5;82m\]\u\e[0;00m\]@\e[1;38;5;27m\]\h\e[0;00m\]: \# - \\$ \[$(tput sgr0)\]\e[0;00m\]"
-
 # pretty print csv fies
 alias csv="column -t -s ','"
 
