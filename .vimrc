@@ -23,10 +23,6 @@ set t_Co=256
 
         " colour themes
         Plug 'joshdick/onedark.vim'
-        Plug 'sainnhe/everforest'
-        Plug 'nanotech/jellybeans.vim'
-        Plug 'sainnhe/edge'
-        Plug 'jacoborus/tender.vim'
 
         Plug 'lervag/vimtex'
         Plug 'sheerun/vim-polyglot'
@@ -50,6 +46,9 @@ set t_Co=256
         Plug 'vim-pandoc/vim-pandoc'
         Plug 'szw/vim-tags'
 
+        " IDE like tabs
+        Plug 'bagrat/vim-buffet'
+
         " file icons
         Plug 'ryanoasis/vim-devicons'
 
@@ -61,18 +60,14 @@ set t_Co=256
 
 " Colour Scheme ------------------------------------------- {{{
 
-    " set termguicolors
-    " let ayucolor="dark"
-    " colorscheme ayu
-
-    " set colour scheme.
+    " set colour scheme
     syntax on
-    " colorscheme onedark
-    colorscheme edge
+    colorscheme onedark
 
 " }}}
 
 " LOOK AND FEEL ------------------------------------------- {{{
+
 
     " Disable compatibility with vi which can cause unexpected issues.
     set nocompatible
@@ -124,7 +119,9 @@ set t_Co=256
     " airline settings
     let g:airline#extensions#tabline#enabled = 1
     let g:airline_detect_spell=1
+    let g:airline_detect_spelllang=1
     let g:airline_statusline_ontop=1
+    let g:airline_inactive_collage=1
     let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
 
     " set visual bell
@@ -171,6 +168,7 @@ set t_Co=256
 
 " Custom Mappings ---------------------------------------------------------------- {{{
 
+
     let maplocalleader = "\\"
     " Map <leader>
     let mapleader = ","
@@ -193,9 +191,31 @@ set t_Co=256
 
 " }}}
 
+" {{{Tabs & Buffers
+
+    let mapleader = "t"
+    map <leader>+ :tabnew
+    map <leader>n :tabnext<cr>
+    map <leader>c :tabclose<cr>
+    map <leader>p :tabprevious<cr>
+    map <leader>l :tabs<cr>
+    map <leader>bd :Bclose<cr>:tabclose<cr>gT
+
+    map <C-j> <C-W>j
+    map <C-k> <C-W>k
+    map <C-h> <C-W>h
+    map <C-l> <C-W>l
+
+    let g:buffet_always_show_tabline=1
+    let g:buffet_powerline_separators=1
+" }}}
+
+
 " {{{vim-tags
 
     let g:vim_tags_cache_dir = expand($HOME) . "/.cache"
+
+    let g:vim_tags_auto_generate = 1
 
 " vim-tags}}}
 
