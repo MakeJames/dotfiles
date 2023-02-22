@@ -44,6 +44,7 @@ set t_Co=256
 
         Plug 'ekalinin/Dockerfile.vim'
         Plug 'vim-pandoc/vim-pandoc'
+        Plug 'vim-pandoc/vim-pandoc-syntax'
         Plug 'szw/vim-tags'
 
         " IDE like tabs
@@ -225,11 +226,8 @@ set t_Co=256
 
 " {{{pandoc
 
-    if !exists('g:ycm_semantic_triggers')
-        let g:ycm_semantic_triggers = {}
-    endif
-    let g:ycm_semantic_triggers.pandoc = ['@']
-    let g:ycm_filetype_blacklist = {}
+    let g:pandoc#filetypes#handled = ["pandoc", "markdown"]
+    let g:pandoc#filetypes#pandoc_markdown = 0
 
 " pandoc}}}
 
