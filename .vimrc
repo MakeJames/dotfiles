@@ -30,6 +30,12 @@ set t_Co=256
         " status line improvements
         Plug 'bling/vim-airline'
 
+        " list buffers in the command bar
+        Plug 'bling/vim-bufferline'
+
+        " multiple cursors - IDE madness
+        Plug 'mg979/vim-visual-multi'
+
         " A git plug-in
         Plug 'tpope/vim-fugitive'
 
@@ -41,6 +47,9 @@ set t_Co=256
 
         " interact with python virtual environments
         Plug 'petobens/poet-v'
+
+        " Jump to definitions across supported languages
+        Plug 'pechorin/any-jump.vim'
 
         Plug 'ekalinin/Dockerfile.vim'
         Plug 'vim-pandoc/vim-pandoc'
