@@ -1,5 +1,5 @@
 ---
-:editor: "/usr/bin/nvim -f -c"
+:editor: "/usr/bin/nvim -f -c 'set tw=72' -c 'set filetype=mail'"
 :thread_by_subject: false
 :edit_signature: false
 :ask_for_from: false
