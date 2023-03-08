@@ -1,5 +1,5 @@
 ---
-:editor: "/user/binnvim -f -c 'set sfiletype=mail'"
+:editor: "/usr/bin/nvim -f -c"
 :thread_by_subject: false
 :edit_signature: false
 :ask_for_from: false
@@ -31,7 +31,7 @@
     :email: james@makejames.com
     :alternates:
     - jmcbean3@gmail.com
-    :sendmail: "/usr/sbin/sendmail -oem -ti"
+    :sendmail: msmtp -t --read-envelope-from
     :signature: "/home/james/.signature"
     :gpgkey: ''
 :time_mode: 24h
