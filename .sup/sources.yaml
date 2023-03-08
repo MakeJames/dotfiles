@@ -1,0 +1,16 @@
+---
+- !supmua.org,2006-10-01/Redwood/Maildir
+  uri: maildir:/home/james/Mail/makejames/INBOX
+  usual: true
+  archived: false
+  sync_back: true
+  id: 1
+  labels: []
+- !supmua.org,2006-10-01/Redwood/Maildir 
+  uri: maildir:/home/User/Mail/jmcbean3/INBOX
+  usual: true
+  archived: false
+  sync_back: true
+  id: 2
+  labels: []
+- !supmua.org,2006-10-01/Redwood/SentLoader {}
