@@ -23,6 +23,10 @@ set t_Co=256
 
         " colour themes
         Plug 'joshdick/onedark.vim'
+        Plug 'sonph/onehalf', { 'rtp': 'vim' }
+
+        " Startify - opening page for vim
+        Plug 'mhinz/vim-startify'
 
         Plug 'lervag/vimtex'
         Plug 'sheerun/vim-polyglot'
@@ -68,11 +72,11 @@ set t_Co=256
 
 " }}}
 
-" Colour Scheme ------------------------------------------- {{{
+" Colour Scheme ---zo---------------------------------------- {{{
 
     " set colour scheme
     syntax on
-    colorscheme onedark
+    colorscheme onehalfdark
 
 " }}}
 
