@@ -28,6 +28,9 @@ set t_Co=256
         " Startify - opening page for vim
         Plug 'mhinz/vim-startify'
 
+        " indent lines
+        Plug 'Yggdroot/indentLine'
+
         Plug 'lervag/vimtex'
         Plug 'sheerun/vim-polyglot'
 
@@ -93,12 +96,6 @@ set t_Co=256
     " Enable type file detection. Vim will try to detect the file type.
     filetype on
 
-    " Set shift width to 4 spaces.
-    set shiftwidth=4
-
-    " Set tab width to 4 columns.
-    set tabstop=4
-
     " Enable plugins and load plugin for the detected file type.
     filetype plugin on
 
@@ -149,6 +146,20 @@ set t_Co=256
     let c_space_errors = 1
 
 " }}}
+
+" {{{ INDENTATION SETTINGS
+
+    " Set shift width to 4 spaces.
+    set shiftwidth=4
+
+    " Set tab width to 4 columns.
+    set tabstop=4
+
+    autocmd FileType html setlocal shiftwidth=2 tabstop=2
+    autocmd FileType css setlocal shiftwidth=2 tabstop=2
+    autocmd FileType scss setlocal shiftwidth=2 tabstop=2
+" }}}
+
 
 " LANGUAGE SETTINGS ------------------------------------------------------ {{{
 
@@ -208,6 +219,10 @@ set t_Co=256
     let g:jedi#completions_command = "<C-Space>"
     let g:jedi#rename_command = "<leader>r"
 
+    let g:VM_leader = "~"
+    let g:VM_maps = {}
+    let g:VM_maps["Select Cursor Down"] = '`<Down>'
+    let g:VM_maps["Select Cursor Up"]   = '`<Up>'
 " }}}
 
 " {{{Tabs & Buffers
