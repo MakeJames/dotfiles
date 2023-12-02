@@ -169,6 +169,13 @@ set t_Co=256
     " needed for vim-polyglot
     set nocompatible
 
+    " Change vim-polyglot syntax highlighting
+    augroup markdown_conceal
+        autocmd!
+        autocmd InsertEnter *.md set conceallevel=0
+        autocmd InsertLeave *.md set conceallevel=2
+    augroup END
+
 " }}}
 
 " VIM SCRIPT -------------------------------------------------------------- {{{
