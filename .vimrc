@@ -161,7 +161,6 @@ set t_Co=256
     autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 " }}}
 
-
 " LANGUAGE SETTINGS ------------------------------------------------------ {{{
 
     set spell spelllang=en_gb
