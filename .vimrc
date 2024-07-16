@@ -205,6 +205,30 @@ set t_Co=256
 " Custom Mappings ---------------------------------------------------------------- {{{
 
 
+    " navigate panes
+    map <tab> <C-w>w
+    tnoremap <tab> <C-w>w
+
+    " move a pane to the left
+    map <tab>L <C-w>L
+    tnoremap <tab>L <C-w>L
+
+    " move a pane to the Right
+    map <tab>H <C-w>H
+    tnoremap <tab>H <C-w>H
+
+    " move a pane to the Bottom
+    map <tab>J <C-w>J
+    tnoremap <tab>J <C-w>J
+
+    " move a pane to the Bottom
+    map <tab>K <C-w>K
+    tnoremap <tab>K <C-w>K
+
+    " next buffer
+    map <S-tab> :bn<Return>
+    "tnoremap <S-tab> <C-w>:bn<Return>
+
     map % :source %<CR>
 
     let maplocalleader = "\\"
