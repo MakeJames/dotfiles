@@ -1,5 +1,8 @@
+# vim: set ts=4 sw=4 noet filetype=gitconfig:
+
 [core]
     excludesfile = $HOME/.gitignore
+    editor = vim
 [user]
     name = makejames
     email = james@makejames.com
@@ -9,3 +12,55 @@
     pretty = format:%C(auto)%h %C(green)%aN%Creset %s
 [credential "https://gitlab.com"]
     helper = !/usr/bin/glab auth git-credential
+[color]
+    ui = auto
+	# diff = false
+	# show = false
+[alias]
+    aliases = !git config --get-regexp alias | sed -re 's/alias\\.(\\S*)\\s(.*)$/\\1 = \\2/g'
+    edit = commit --amend --only
+    lg = log --graph --date=relative --pretty=tformat:'%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%an %ad)%Creset'
+    review-local = "!git lg @{push}.."
+    s = status --short --branch
+    sc = show --compact-summary
+    st = status
+    sw = switch
+    uncommit = reset --soft HEAD~1
+    wk = worktree
+[diff]
+    colorMoved = true
+    # replace a/b with (i)ndex/(c)ommit/(w)orking tree
+    mnemonicPrefix = true
+    renames = true
+    # for git diff-tool
+    tool = vim-diff
+[difftool "vim-diff"]
+    cmd = vim --diff $LOCAL $REMOTE
+[fetch]
+    prune = true
+    writeCommitGraph = true
+[log]
+    abbrevCommit = true
+[merge]
+    conflictStyle = diff3
+[pager]
+    log = less
+    branch = less
+[pull]
+    ff = only
+[push]
+    default = current
+    followTags =true
+[status]
+    showUntrackedFiles = all
+[color "branch"]
+    upstream = cyan
+[tag]
+    sort = version:refname
+[versionsort]
+  prereleaseSuffix = -pre
+  prereleaseSuffix = .pre
+  prereleaseSuffix = -beta
+  prereleaseSuffix = .beta
+  prereleaseSuffix = -rc
+  prereleaseSuffix = .rc
