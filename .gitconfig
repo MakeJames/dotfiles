@@ -6,6 +6,6 @@
 [init]
     defaultBranch = main
 [format]
-	pretty = format:%C(auto)%h %C(green)%aN%Creset %s
+    pretty = format:%C(auto)%h %C(green)%aN%Creset %s
 [credential "https://gitlab.com"]
-	helper = !/usr/bin/glab auth git-credential
+    helper = !/usr/bin/glab auth git-credential
