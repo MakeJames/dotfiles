@@ -122,3 +122,21 @@ if (( "${debug_flag}" > 0 )); then
 fi
 
 ln "${work_path}"/bash/.bash_aliases "${HOME}"/.bash_aliases
+
+# ==================
+# Install .vimrc
+# ==================
+
+if [ -f "${HOME}"/.vimrc ]; then
+    archive .vimrc
+fi
+
+if [ -L "${HOME}"/.vimrc ]; then
+    rm "${HOME}"/.vimrc
+fi
+
+if (( "${debug_flag}" > 0 )); then
+    echo "Linking .vimrc"
+fi
+
+ln "${work_path}"/vim/.vimrc-minimal "${HOME}"/.vimrc
