@@ -69,7 +69,7 @@ if [ -L "${HOME}"/.gitconfig ]; then
     rm "${HOME}"/.gitconfig
 fi
 
-link .gitconfig
+link "${work_path}"/.gitconfig
 
 # ==================
 # Install .bash_aliases
@@ -83,4 +83,4 @@ if [ -L "${HOME}"/.bash_aliases ]; then
     rm "${HOME}"/.bash_aliases
 fi
 
-link .bash_aliases
+link "${work_path}"/bash/.bash_aliases
