@@ -1,0 +1,99 @@
+#!/bin/bash
+
+# LICENCE: MIT
+
+# Generate a string of random words.
+
+set -o errexit
+set -o nounset
+set -o pipefail
+
+n_words=4
+separator="-"
+
+readonly script_name="${0##*/}"
+
+readonly max_words="100"
+
+readonly parse_options_err="81"
+readonly too_many_words_err="80"
+
+
+usage () {
+    cat <<USAGE_TEXT
+Generate random words.
+Usage ${script_name} [-h | --help] [ -n <ARG> ] [ --separator <ARG> ]
+DESCRIPTION
+    Generate a string of random words.
+OPTIONS:
+-h, --help
+        Print this help text and exit
+-n, --n_words
+        Number of words in generated output.
+        Default: 4
+	Max: 100 words.
+-s, --separator
+        Word Separator.
+        Can parse multiple separators.
+        Default: "-"
+
+LICENCE: MIT
+USAGE_TEXT
+}
+
+die () {
+   local -r msg="${1}"
+   local -r code="${2:-90}"
+   echo -e "${msg}\n" >&2
+   usage
+   exit "${code}"
+}
+
+parse_options () {
+    local -r args=("${@}")
+    local opts
+    opts=$(getopt --options ns:h --long n_words,separator:help -- "${args[@]}" 2> /dev/null) || {
+	die "error: parsing options" "${parse_options_err}"
+    }
+
+    eval set -- "${opts}"
+
+    while true; do
+        case "${1}" in
+            --n_words|-n)
+                n_words="${3}"
+                shift
+                shift
+                ;;
+            --separator|-s)
+                separator="${2}"
+                shift
+                shift
+                ;;
+            --help|-h)
+                usage
+                exit 0
+                ;;
+            *)
+                break
+                ;;
+             esac
+        done
+}
+
+join() {
+    local IFS="$1"
+    shift
+    echo "$*"
+}
+
+
+parse_options "${@}"
+
+if (( n_words > "${max_words}" )); then 
+    die "Really?!\nWhy?\n\nWhat is your usecase here?" "${too_many_words_err}"
+fi
+
+words=$(echo $(grep -E -v "é|'s$|[Åå]|[Øø]" /usr/share/dict/words | shuf --random-source=/dev/random -n"${n_words}"))
+
+echo -e "$words" | sed "s/ /$separator/g"
