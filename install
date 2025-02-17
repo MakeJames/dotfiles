@@ -10,6 +10,10 @@ set -o pipefail
 work_path=$(dirname "$(readlink -f "$0")")
 readonly script_name="${0##*/}"
 
+readonly parse_options_err="81"
+
+debug_flag=0
+
 trap clean_up ERR EXIT SIGINT SIGTERM
 
 usage () {
@@ -21,6 +25,8 @@ DESCRIPTION
 OPTIONS:
 -h, --help
         Print this help and exit.
+--debug
+        Print additional informational and debug statements
 USAGE_TEXT
 }
 
@@ -30,7 +36,7 @@ clean_up () {
 
 die() {
     local -r msg="${1}"
-    local -r code "${2:-90}"
+    local -r code="${2:-90}"
     echo "${msg}" >&2
     exit "${code}"
 }
@@ -41,19 +47,43 @@ setup () {
 MakeJames Dotfiles
 ==================
 Welcome!
-
-Arciving any existing dotfiles....
 INIT_TEXT
 }
 
-
 archive () {
+    if (( "${debug_flag}" > 0 )); then
+	echo "Moving old ${1}"
+    fi
     mv "${HOME}"/"${1}" "${HOME}"/Profile/archive/"${1}"-"$(date '+%Y-%m-%d-%H-%M-%S')"
 }
 
-link () {
-    ln "${work_path}"/"${1}" "${HOME}"/"${1}"
+parse_options () {
+    local -r args=("${@}")
+    local opts
+    opts=$(getopt --options h --long help,debug -- "${args[@]}" 2> /dev/null) || {
+	die "error: parsing options" "${parse_options_err}"
+    }
+
+    eval set -- "${opts}"
+
+    while true; do
+        case "${1}" in
+            --help|-h)
+                usage
+                exit 0
+                ;;
+            --debug)
+                debug_flag=1
+                shift
+                ;;
+            *)
+                break
+                ;;
+             esac
+        done
 }
+
+parse_options "${@}"
 
 setup
 
@@ -69,7 +99,11 @@ if [ -L "${HOME}"/.gitconfig ]; then
     rm "${HOME}"/.gitconfig
 fi
 
-link "${work_path}"/git/.gitconfig
+if (( "${debug_flag}" > 0 )); then
+    echo "Linking .gitconfig"
+fi
+
+ln "${work_path}"/git/.gitconfig "${HOME}"/.gitconfig
 
 # ==================
 # Install .bash_aliases
@@ -83,4 +117,8 @@ if [ -L "${HOME}"/.bash_aliases ]; then
     rm "${HOME}"/.bash_aliases
 fi
 
-link "${work_path}"/bash/.bash_aliases
+if (( "${debug_flag}" > 0 )); then
+    echo "Linking .bash_aliases"
+fi
+
+ln "${work_path}"/bash/.bash_aliases "${HOME}"/.bash_aliases
