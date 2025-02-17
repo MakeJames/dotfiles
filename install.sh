@@ -38,3 +38,17 @@ if [ -L $HOME/.gitconfig ]; then
 fi
 
 link .gitconfig
+
+# ==================
+# Install .bash_aliases
+# ==================
+
+if [ -f $HOME/.bash_aliases ]; then
+    archive .bash_aliases
+fi
+
+if [ -L $HOME/.bash_aliases ]; then
+    rm $HOME/.bash_aliases
+fi
+
+link .bash_aliases
