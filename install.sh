@@ -1,8 +1,11 @@
 #!/bin/bash
 
-# ====
-# INIT
-# ====
+# Install MakeJames/dotfiles in local system.
+# LICENCE: MIT
+
+set -o errexit
+set -o nounset
+set -o pipefail
 
 echo "
 MakeJames Dotfiles
