@@ -31,7 +31,7 @@ OPTIONS:
 -n, --n_words
         Number of words in generated output.
         Default: 4
-	Max: 100 words.
+    Max: 100 words.
 -s, --separator
         Word Separator.
         Can parse multiple separators.
@@ -53,7 +53,7 @@ parse_options () {
     local -r args=("${@}")
     local opts
     opts=$(getopt --options ns:h --long n_words,separator:help -- "${args[@]}" 2> /dev/null) || {
-	die "error: parsing options" "${parse_options_err}"
+    die "error: parsing options" "${parse_options_err}"
     }
 
     eval set -- "${opts}"
@@ -81,16 +81,9 @@ parse_options () {
         done
 }
 
-join() {
-    local IFS="$1"
-    shift
-    echo "$*"
-}
-
-
 parse_options "${@}"
 
-if (( n_words > "${max_words}" )); then 
+if (( n_words > "${max_words}" )); then
     die "Really?!\nWhy?\n\nWhat is your usecase here?" "${too_many_words_err}"
 fi
 
