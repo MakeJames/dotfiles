@@ -41,7 +41,7 @@ LICENCE: MIT
 USAGE_TEXT
 }
 
-die () {
+raise () {
    local -r msg="${1}"
    local -r code="${2:-90}"
    echo -e "${msg}\n" >&2
@@ -57,7 +57,7 @@ parse_options () {
     local -r args=("${@}")
     local opts
     opts=$(getopt --options ns:h --long n_words,separator:help -- "${args[@]}" 2> /dev/null) || {
-    die "error: parsing options" "${parse_options_err}"
+    raise "error: parsing options" "${parse_options_err}"
     }
 
     eval set -- "${opts}"
@@ -88,7 +88,7 @@ parse_options () {
 parse_options "${@}"
 
 if (( n_words > "${max_words}" )); then
-    die "Really?!\nWhy?\n\nWhat is your usecase here?" "${too_many_words_err}"
+    raise "Really?!\nWhy?\n\nWhat is your usecase here?" "${too_many_words_err}"
 fi
 
 words="$(grep -E -av "é|'s$|[Åå]|[Øø]" /usr/share/dict/words | shuf --random-source=/dev/random -n"${n_words}" | tr "\n" " " | trim )"
