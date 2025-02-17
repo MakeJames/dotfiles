@@ -36,7 +36,7 @@ die() {
 }
 
 setup () {
-    mkdir -p $HOME/Profile/archive
+    mkdir -p "${HOME}"/Profile/archive
     cat <<INIT_TEXT
 MakeJames Dotfiles
 ==================
@@ -48,11 +48,11 @@ INIT_TEXT
 
 
 archive () {
-    mv $HOME/$1 $HOME/Profile/archive/$1-$(date '+%Y-%m-%d-%H-%M-%S')
+    mv "${HOME}"/"${1}" "${HOME}"/Profile/archive/"${1}"-"$(date '+%Y-%m-%d-%H-%M-%S')"
 }
 
 link () {
-    ln $work_path/$1 $HOME/$1
+    ln "${work_path}"/"${1}" "${HOME}"/"${1}"
 }
 
 setup
@@ -61,12 +61,12 @@ setup
 # Install .gitconfig
 # ==================
 
-if [ -f $HOME/.gitconfig ]; then
+if [ -f "${HOME}"/.gitconfig ]; then
     archive .gitconfig
 fi
 
-if [ -L $HOME/.gitconfig ]; then
-    rm $HOME/.gitconfig
+if [ -L "${HOME}"/.gitconfig ]; then
+    rm "${HOME}"/.gitconfig
 fi
 
 link .gitconfig
@@ -75,12 +75,12 @@ link .gitconfig
 # Install .bash_aliases
 # ==================
 
-if [ -f $HOME/.bash_aliases ]; then
+if [ -f "${HOME}"/.bash_aliases ]; then
     archive .bash_aliases
 fi
 
-if [ -L $HOME/.bash_aliases ]; then
-    rm $HOME/.bash_aliases
+if [ -L "${HOME}"/.bash_aliases ]; then
+    rm "${HOME}"/.bash_aliases
 fi
 
 link .bash_aliases
