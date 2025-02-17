@@ -49,6 +49,10 @@ die () {
    exit "${code}"
 }
 
+trim () {
+    awk '{$1=$1};1'
+}
+
 parse_options () {
     local -r args=("${@}")
     local opts
@@ -87,6 +91,6 @@ if (( n_words > "${max_words}" )); then
     die "Really?!\nWhy?\n\nWhat is your usecase here?" "${too_many_words_err}"
 fi
 
-words=$(echo $(grep -E -v "é|'s$|[Åå]|[Øø]" /usr/share/dict/words | shuf --random-source=/dev/random -n"${n_words}"))
+words="$(grep -E -av "é|'s$|[Åå]|[Øø]" /usr/share/dict/words | shuf --random-source=/dev/random -n"${n_words}" | tr "\n" " " | trim )"
 
-echo -e "$words" | sed "s/ /$separator/g"
+echo -e "${words}" | sed "s/ /${separator}/g"
