@@ -1,13 +1,21 @@
 # Make James Dotfiles
 
 This repo contains the dotfiles for Make James.
-This repository is managed using vcsh,
-a source control manager for files in the `$HOME` directory of a user.
 
 ## Getting started
 
 Before getting started,
-this will splat over the top of pre-existing files.
+this will splat over the top of pre-existing configuration files.
+
+Clone the repo:
+
+```sh
+git clone git@github.com:makejames/dotfiles.git
+```
+
+Run `dotfiles/install`
+
+
 Make sure that you have made note of
 or copied anything that you would prefer not to loose.
 Check the repository that you are cloning into for:
@@ -33,3 +41,7 @@ For detailed installation instructions read
 apt install vcsh
 vcsh clone -b main git@gitlab.com:makejames/dotfiles.git
 ```
+
+## Development
+
+Shell scripts must be linted using `shellcheck`.
