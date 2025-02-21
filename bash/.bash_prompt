@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # =~=~=~=~=~=~=~=~=~=~=~=~=
 # MakeJames: command prompt
 # =~=~=~=~=~=~=~=~=~=~=~=~=
@@ -24,8 +26,21 @@ case "$TERM" in
     ;;
 esac
 
-local_git_changes() {
+reset=$(tput sgr0);
+bold=$(tput bold);
+# black=$(tput setaf 236);
+red=$(tput setaf 168);
+green=$(tput setaf 114);
+yellow=$(tput setaf 180);
+blue=$(tput setaf 75);
+purple=$(tput setaf 176);
+# cyan=$(tput setaf 73);
+# white=$(tput setaf 188);
+grey=$(tput setaf 241);
+light_grey=$(tput setaf 247);
+# dark_grey=$(tput setaf 239);
 
+local_git_changes() {
     echo -e "{s}"
 }
 
@@ -108,7 +123,7 @@ PS1+="\$(prompt_git \"${light_grey} on ${yellow}\")"; # Git repository details
 PS1+="\\[${bold}\\]\\n"; # newline
 PS1+="\\[${userStyle}\\]\\u"; # username
 PS1+="\\[${light_grey}\\] @ ";
-PS1+="\\[${hostStyle}\\]${cloud}\\h${shhConnection}"; # host
+PS1+="\\[${hostStyle}\\]${cloud}\\h${sshConnection}"; # host
 PS1+="\\n";
 PS1+="\\[${light_grey}\\]\$ \\[${reset}\\]"; # `$` (and reset color)
 export PS1;

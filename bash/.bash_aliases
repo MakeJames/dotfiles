@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # =======================
 # MakeJames .bash_aliases
 # =======================
@@ -27,7 +29,12 @@ alias tree="tree --du -h"
 
 # enable colour support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
-    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+    if [ -r "${HOME}"/.dircolors ]; then
+        eval "$(dircolors -b "${HOME}/.dircolors")"
+    else
+        eval "$(dircolors -b)"
+    fi
+
     alias ls="ls -a -w 75 --color=auto"
     alias dir="dir --color=auto"
     alias vdir="vdir --color=auto"
@@ -36,4 +43,4 @@ if [ -x /usr/bin/dircolors ]; then
     alias egrep="egrep --color=auto"
 fi
 
-# vim: set sw=4 tw=4 filetype=bash:
+# vim: set filetype=sh:

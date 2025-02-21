@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # =================
 # MakeJames .bashrc
 # =================
@@ -6,10 +8,6 @@
 # LICENCE: MIT <https://github.com/MakeJames/dotfiles/blob/main/LICENCE>
 
 # Copy wholesale at your own risk.
-
-# ~/.bashrc: executed by bash(1) for non-login shells.
-# see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
-# for examples
 
 # If not running interactively, don't do anything
 case $- in
@@ -21,8 +19,9 @@ esac
 # .dotfiles
 # =======
 
-if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
+if [ -f "${HOME}/.bash_aliases" ]; then
+    # shellcheck source=/dev/null
+    source "${HOME}/.bash_aliases"
 fi
 
 
@@ -44,29 +43,27 @@ fi
 # and /etc/profile sources /etc/bash.bashrc).
 
 if ! shopt -oq posix; then
-  if [ -f /usr/share/bash-completion/bash_completion ]; then
-    . /usr/share/bash-completion/bash_completion
-  elif [ -f /etc/bash_completion ]; then
-    . /etc/bash_completion
-  fi
+    if [ -f /usr/share/bash-completion/bash_completion ]; then
+        # shellcheck source=/dev/null
+        source /usr/share/bash-completion/bash_completion
+    elif [ -f /etc/bash_completion ]; then
+        # shellcheck source=/dev/null
+        source /etc/bash_completion
+    fi
 fi
 
 # ======
 # Colour
 # ======
 
-if [ -f ~/.colours ]; then
-    . ~/.colours
-fi
+color_prompt=
 
 # set a fancy prompt (non-colour, unless we know we "want" colour)
 case "$TERM" in
-    xterm-color|*-256color) color_prompt=yes;;
+    xterm-color|*-256color)
+        color_prompt=yes
+        ;;
 esac
-
-if [ "$color_prompt" = yes ]; then
-    onehalf_dark
-fi
 
 # ======
 # Prompt
@@ -74,12 +71,13 @@ fi
 
 ps1_theme="defulat"
 
-if [ -f ~/.bash_prompt ]; then
-    . ~/.bash_prompt
+if [ -f "${HOME}/.bash_prompt" ]; then
+    # shellcheck source=/dev/null
+    . "${HOME}/.bash_prompt"
     ps1_theme="bash_prompt"
 fi
 
-if [ "ps1_theme" = "default" ]; then
+if [ "${ps1_theme}" = "default" ]; then
     parse_git_branch() {
         git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
     }
@@ -126,20 +124,23 @@ shopt -s histappend
 
 # Node and nvm
 
-if [ -f $HOME/.nvm ]; then
-    export NVM_DIR="$HOME/.nvm"
+if [ -f "${HOME}/.nvm" ]; then
+    export NVM_DIR="${HOME}/.nvm"
 
     # Load nvm
-    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+    # shellcheck source=/dev/null
+    [ -s "$NVM_DIR/nvm.sh" ] && source "$NVM_DIR/nvm.sh"  # This loads nvm
 
     # Load nvm bash_completion
-    [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+    # shellcheck source=/dev/null
+    [ -s "$NVM_DIR/bash_completion" ] && source "$NVM_DIR/bash_completion"
 fi
 
 # Rust and cargo
 
-if [ -f $HOME/.cargo/env ]; then 
-    . "$HOME/.cargo/env"
+if [ -f "${HOME}/.cargo/env" ]; then
+    # shellcheck source=/dev/null
+    source "${HOME}/.cargo/env"
 fi
 
 # ===============
