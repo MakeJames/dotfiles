@@ -136,7 +136,7 @@ link_files () {
         fi
         file_name="$(basename "${file}")"
 
-        log "Updating ${file}"
+        log "Updating ${file_name} to use ${file}"
 
         if [ -f "${HOME}"/"${file_name}" ]; then
             archive "${file_name}"
