@@ -10,14 +10,18 @@ set -o pipefail
 work_path=$(dirname "$(readlink -f "$0")")
 readonly script_name="${0##*/}"
 
-readonly options="h,m"
-readonly options_long="help,minimal,debug"
+readonly options="a,h,m"
+readonly options_long="all,help,minimal,debug,bash"
 readonly parse_options_err="81"
 
 # Set default flags
-debug_flag=""
-minimal=""
-all=""
+debug_flag=
+minimal=
+all=
+
+bash=
+# vim=
+# bin=
 
 
 usage () {
@@ -27,6 +31,12 @@ Usage: ${script_name} [-h | --help]
 DESCRIPTION
     Installation script for MakeJames Dotfiles.
 OPTIONS:
+
+Configuration files
+--all
+        Install all dotfiles
+--bash
+        Install bash specific dotfiles.
 
 -m, --minimal
         Install minimal configuration files if available.
@@ -40,7 +50,7 @@ USAGE_TEXT
 
 log () {
     local msg="${1}"
-    if (( "${debug_flag}" > 0)); then
+    if [ "${debug_flag}" = "true" ]; then
         echo "${msg}"
     fi
 }
@@ -49,6 +59,7 @@ raise () {
     local -r msg="${1}"
     local -r code="${2:-90}"
     echo "${msg}" >&2
+    usage
     exit "${code}"
 }
 
@@ -74,12 +85,24 @@ parse_options () {
 
     while true; do
         case "${1}" in
+            --all|-a)
+                all="true"
+                shift
+                ;;
+            --bash)
+                bash="true"
+                shift
+                ;;
             --help|-h)
                 usage
                 exit 0
                 ;;
+            --minimal|-m)
+                minimal="true"
+                shift
+                ;;
             --debug)
-                debug_flag=1
+                debug_flag="true"
                 shift
                 ;;
             *)
@@ -95,15 +118,16 @@ setup
 
 link_files () {
     local path="${1}"
-    local files
 
-    files=$(ls -Ap ${path} | grep -v /)
+    shopt -s dotglob
 
-    set -- "${files}"
+    for file in "${path}"/*; do
+        if [ -d "${file}" ]; then
+            log "${file} is a directory, skipping."
+            continue
+        fi
 
-    for file in ${files}; do
         log "Updating ${file}"
-        continue # Prevent links for now.
 
         if [ -f "${HOME}"/"${file}" ]; then
             archive "${file}"
@@ -117,11 +141,18 @@ link_files () {
     done
 }
 
-_install () {
-    local -r paths="${@}"
-    set -- "${paths}"
-    for path in ${paths}; do
-        log "Updating ${path}"
-        link_files "${path}"
-    done
-}
+if [ "${all}" = "true" ]; then
+    log "Updating all dotfiles."
+    bash="true"
+fi
+
+if [ "${bash}" = "true" ]; then
+    log "Updating bash files."
+    bash_files="${work_path}/bash"
+
+    if [ "${minimal}" = "true" ]; then
+        bash_files="${work_path}/minimal/bash"
+    fi
+
+    link_files "${bash_files}"
+fi
