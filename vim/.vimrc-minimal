@@ -2,9 +2,10 @@
 " MakeJames: Vim Config
 " =====================
 
-" Copy wholesale at your own risk.
+" https://github.com/MakeJames/dotfiles
+" LICENCE: MIT <https://github.com/MakeJames/dotfiles/blob/main/LICENCE>
 
-" LICENCE: MIT
+" Copy wholesale at your own risk.
 
 set nocompatible
 

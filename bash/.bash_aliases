@@ -3,7 +3,9 @@
 # =======================
 
 # https://github.com/MakeJames/dotfiles
-# LICENCE: https://github.com/MakeJames/dotfiles/blob/main/LICENCE.md
+# LICENCE: MIT <https://github.com/MakeJames/dotfiles/blob/main/LICENCE>
+
+# Copy wholesale at your own risk.
 
 # pretty print csv fies
 alias csv="column -t -s ','"

@@ -3,7 +3,9 @@
 # =================
 
 # https://github.com/MakeJames/dotfiles
-# LICENCE: https://github.com/MakeJames/dotfiles/blob/main/LICENCE.md
+# LICENCE: MIT <https://github.com/MakeJames/dotfiles/blob/main/LICENCE>
+
+# Copy wholesale at your own risk.
 
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)

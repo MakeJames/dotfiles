@@ -1,6 +1,7 @@
 #!/bin/bash
 
-# LICENCE: MIT
+# https://github.com/MakeJames/dotfiles
+# LICENCE: MIT <https://github.com/MakeJames/dotfiles/blob/main/LICENCE>
 
 # Generate a string of random words.
 

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Install MakeJames/dotfiles in local system.
-# LICENCE: MIT
+# LICENCE: MIT <https://github.com/MakeJames/dotfiles/blob/main/LICENCE>
 
 set -o errexit
 set -o nounset
