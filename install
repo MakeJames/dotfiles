@@ -152,7 +152,7 @@ if [ "${bash}" = "true" ]; then
     bash_files="${work_path}/bash"
 
     if [ "${minimal}" = "true" ]; then
-        bash_files="${work_path}/minimal/bash"
+        bash_files="${work_path}/bash/minimal"
     fi
 
     link_files "${bash_files}"
