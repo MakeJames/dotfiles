@@ -11,7 +11,7 @@ work_path=$(dirname "$(readlink -f "$0")")
 readonly script_name="${0##*/}"
 
 readonly options="a,h,m"
-readonly options_long="all,help,minimal,debug,bash"
+readonly options_long="all,help,minimal,debug,bash,vim"
 readonly parse_options_err="81"
 
 # Set default flags
@@ -20,7 +20,7 @@ minimal=
 all=
 
 bash=
-# vim=
+vim=
 # bin=
 
 
@@ -37,10 +37,14 @@ Configuration files
         Install all dotfiles
 --bash
         Install bash specific dotfiles.
+--vim
+        Install vim specific dotfiles.
 
+Options
 -m, --minimal
         Install minimal configuration files if available.
 
+Additional settings
 -h, --help
         Print this help and exit.
 --debug
@@ -91,6 +95,10 @@ parse_options () {
                 ;;
             --bash)
                 bash="true"
+                shift
+                ;;
+            --vim)
+                vim="true"
                 shift
                 ;;
             --help|-h)
@@ -145,6 +153,7 @@ link_files () {
 if [ "${all}" = "true" ]; then
     log "Updating all dotfiles."
     bash="true"
+    vim="true"
 fi
 
 if [ "${bash}" = "true" ]; then
@@ -156,4 +165,15 @@ if [ "${bash}" = "true" ]; then
     fi
 
     link_files "${bash_files}"
+fi
+
+if [ "${vim}" = "true" ]; then
+    log "Updating vim files."
+    vim_files="${work_path}/vim"
+
+    if [ "${minimal}" = "true" ]; then
+        vim_files="${work_path}/vim/minimal"
+    fi
+
+    link_files "${vim_files}"
 fi
