@@ -12,9 +12,12 @@ readonly script_name="${0##*/}"
 
 readonly parse_options_err="81"
 
-debug_flag=0
+git_files="${work_path}/git"
+bash_files="${work_path}/bash"
+vim_files="${work_path}/vim"
 
-trap clean_up ERR EXIT SIGINT SIGTERM
+# Set default flags
+debug_flag=0 # default=false
 
 usage () {
     cat <<USAGE_TEXT
@@ -30,11 +33,14 @@ OPTIONS:
 USAGE_TEXT
 }
 
-clean_up () {
-    trap - ERR EXIT SIGINT SIGTERM
+log () {
+    local msg="${1}"
+    if (( "${debug_flag}" > 0)); then
+        echo "${msg}"
+    fi
 }
 
-die() {
+raise () {
     local -r msg="${1}"
     local -r code="${2:-90}"
     echo "${msg}" >&2
@@ -43,25 +49,20 @@ die() {
 
 setup () {
     mkdir -p "${HOME}"/Profile/archive
-    cat <<INIT_TEXT
-MakeJames Dotfiles
-==================
-Welcome!
-INIT_TEXT
 }
 
 archive () {
-    if (( "${debug_flag}" > 0 )); then
-    echo "Moving old ${1}"
-    fi
-    mv "${HOME}"/"${1}" "${HOME}"/Profile/archive/"${1}"-"$(date '+%Y-%m-%d-%H-%M-%S')"
+    log "moving old ${1}"
+    mv "${HOME}"/"${1}" \
+       "${HOME}"/Profile/archive/"${1}"-"$(date '+%Y-%m-%d-%H-%M-%S')"
 }
 
 parse_options () {
     local -r args=("${@}")
     local opts
-    opts=$(getopt --options h --long help,debug -- "${args[@]}" 2> /dev/null) || {
-    die "error: parsing options" "${parse_options_err}"
+    opts=$(getopt --options h --long help,debug -- "${args[@]}" 2> /dev/null) \
+        || {
+            raise "error: parsing options" "${parse_options_err}"
     }
 
     eval set -- "${opts}"
@@ -87,56 +88,39 @@ parse_options "${@}"
 
 setup
 
-# ==================
-# Install .gitconfig
-# ==================
+link_files () {
+    local path="${1}"
+    local files
 
-if [ -f "${HOME}"/.gitconfig ]; then
-    archive .gitconfig
-fi
+    files=$(ls -Ap ${path} | grep -v /)
 
-if [ -L "${HOME}"/.gitconfig ]; then
-    rm "${HOME}"/.gitconfig
-fi
+    set -- "${files}"
 
-if (( "${debug_flag}" > 0 )); then
-    echo "Linking .gitconfig"
-fi
+    for file in ${files}; do
+        log "Updating ${file}"
+        continue # Prevent links for now.
 
-ln "${work_path}"/git/.gitconfig "${HOME}"/.gitconfig
+        if [ -f "${HOME}"/"${file}" ]; then
+            archive "${file}"
+        fi
 
-# ==================
-# Install .bash_aliases
-# ==================
+        if [ -L "${HOME}"/"${file}" ]; then
+            archive "${file}"
+        fi
 
-if [ -f "${HOME}"/.bash_aliases ]; then
-    archive .bash_aliases
-fi
+        ln "${path}"/"${file}" "${HOME}"/"${file}"
+    done
+}
 
-if [ -L "${HOME}"/.bash_aliases ]; then
-    rm "${HOME}"/.bash_aliases
-fi
+_install () {
+    local -r paths="${@}"
 
-if (( "${debug_flag}" > 0 )); then
-    echo "Linking .bash_aliases"
-fi
+    set -- "${paths}"
 
-ln "${work_path}"/bash/.bash_aliases "${HOME}"/.bash_aliases
+    for path in ${paths}; do
+        log "Updating ${path}"
+        link_files "${path}"
+    done
+}
 
-# ==================
-# Install .vimrc
-# ==================
-
-if [ -f "${HOME}"/.vimrc ]; then
-    archive .vimrc
-fi
-
-if [ -L "${HOME}"/.vimrc ]; then
-    rm "${HOME}"/.vimrc
-fi
-
-if (( "${debug_flag}" > 0 )); then
-    echo "Linking .vimrc"
-fi
-
-ln "${work_path}"/vim/.vimrc-minimal "${HOME}"/.vimrc
+_install "${git_files}" "${bash_files}" "${vim_files}"
