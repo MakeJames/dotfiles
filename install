@@ -126,18 +126,19 @@ link_files () {
             log "${file} is a directory, skipping."
             continue
         fi
+        file_name="$(basename "${file}")"
 
         log "Updating ${file}"
 
-        if [ -f "${HOME}"/"${file}" ]; then
-            archive "${file}"
+        if [ -f "${HOME}"/"${file_name}" ]; then
+            archive "${file_name}"
         fi
 
-        if [ -L "${HOME}"/"${file}" ]; then
-            archive "${file}"
+        if [ -L "${HOME}"/"${file_name}" ]; then
+            archive "${file_name}"
         fi
 
-        ln "${path}"/"${file}" "${HOME}"/"${file}"
+        ln "${file}" "${HOME}"/"${file_name}"
     done
 }
 
