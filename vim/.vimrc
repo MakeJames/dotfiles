@@ -22,16 +22,9 @@ set t_Co=256
         Plug 'preservim/nerdtree'
 
         " colour themes
-        Plug 'joshdick/onedark.vim'
         Plug 'sonph/onehalf', { 'rtp': 'vim' }
 
-        " Startify - opening page for vim
-        Plug 'mhinz/vim-startify'
-
-        " indent lines
-        Plug 'Yggdroot/indentLine'
-
-        Plug 'lervag/vimtex'
+        " Plug 'lervag/vimtex'
         Plug 'sheerun/vim-polyglot'
 
         " status line improvements
@@ -52,16 +45,13 @@ set t_Co=256
         " awesome python plug-in
         Plug 'davidhalter/jedi-vim'
 
-        " interact with python virtual environments
-        Plug 'petobens/poet-v'
-
         " Jump to definitions across supported languages
         Plug 'pechorin/any-jump.vim'
 
-        Plug 'ekalinin/Dockerfile.vim'
-        Plug 'vim-pandoc/vim-pandoc'
-        Plug 'vim-pandoc/vim-pandoc-syntax'
-        Plug 'szw/vim-tags'
+        " Plug 'ekalinin/Dockerfile.vim'
+        " Plug 'vim-pandoc/vim-pandoc'
+        " Plug 'vim-pandoc/vim-pandoc-syntax'
+        " Plug 'szw/vim-tags'
 
         " IDE like tabs
         Plug 'bagrat/vim-buffet'
@@ -75,7 +65,7 @@ set t_Co=256
 
 " }}}
 
-" Colour Scheme ---zo---------------------------------------- {{{
+" Colour Scheme --------------------------------------------- {{{
 
     " set colour scheme
     syntax on
