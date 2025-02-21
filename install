@@ -10,14 +10,15 @@ set -o pipefail
 work_path=$(dirname "$(readlink -f "$0")")
 readonly script_name="${0##*/}"
 
+readonly options="h,m"
+readonly options_long="help,minimal,debug"
 readonly parse_options_err="81"
 
-git_files="${work_path}/git"
-bash_files="${work_path}/bash"
-vim_files="${work_path}/vim"
-
 # Set default flags
-debug_flag=0 # default=false
+debug_flag=""
+minimal=""
+all=""
+
 
 usage () {
     cat <<USAGE_TEXT
@@ -26,6 +27,10 @@ Usage: ${script_name} [-h | --help]
 DESCRIPTION
     Installation script for MakeJames Dotfiles.
 OPTIONS:
+
+-m, --minimal
+        Install minimal configuration files if available.
+
 -h, --help
         Print this help and exit.
 --debug
@@ -60,7 +65,7 @@ archive () {
 parse_options () {
     local -r args=("${@}")
     local opts
-    opts=$(getopt --options h --long help,debug -- "${args[@]}" 2> /dev/null) \
+    opts=$(getopt --options "${options}" --long "${options_long}" -- "${args[@]}" 2> /dev/null) \
         || {
             raise "error: parsing options" "${parse_options_err}"
     }
@@ -114,13 +119,9 @@ link_files () {
 
 _install () {
     local -r paths="${@}"
-
     set -- "${paths}"
-
     for path in ${paths}; do
         log "Updating ${path}"
         link_files "${path}"
     done
 }
-
-_install "${git_files}" "${bash_files}" "${vim_files}"
