@@ -183,4 +183,8 @@ shopt -s checkwinsize
 
 unset color_prompt force_color_prompt
 
+if [ -f "${HOME}/.identity.sh" ]; then
+    bash "${HOME}/.identity.sh"
+fi
+
 # vim: filetype=sh
