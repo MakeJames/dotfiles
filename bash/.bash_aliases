@@ -43,4 +43,8 @@ if [ -x /usr/bin/dircolors ]; then
     alias egrep="egrep --color=auto"
 fi
 
+if [ -x /usr/bin/eza ]; then
+    alias ll="eza -l -h --total-size --group-directories-first --sort size -r --git --git-repos --icons=always --smart-group -A --no-permissions --no-user -U"
+    alias l="eza --icons=always -h -A --group-directories-first --sort extension"
+fi
 # vim: set filetype=sh:
