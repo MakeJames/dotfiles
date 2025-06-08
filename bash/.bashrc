@@ -52,6 +52,8 @@ if ! shopt -oq posix; then
     fi
 fi
 
+[ -e "$HOME/.ssh/config" ] && complete -o "default" -o "nospace" -W "$(grep "^Host" ~/.ssh/config | grep -v "[?*]" | cut -d " " -f2- | tr ' ' '\n')" scp sftp ssh;
+
 # ======
 # Colour
 # ======
@@ -142,6 +144,36 @@ if [ -f "${HOME}/.cargo/env" ]; then
     # shellcheck source=/dev/null
     source "${HOME}/.cargo/env"
 fi
+
+# ============
+# Path updates
+# ============
+
+if [ -d "${HOME}/.local/minio-binaries" ]; then
+    export PATH=$PATH:$HOME/.local/minio-binaries/
+fi
+
+if [ -d "${HOME}/.local/bin" ]; then
+    export PATH=$PATH:$HOME/.local/bin
+fi
+
+if [ -d "/usr/local/go/bin" ]; then
+    export PATH=$PATH:/usr/local/go/bin
+fi
+
+if [ -d "/usr/lib/postgresql/15/bin" ]; then
+    export PATH=$PATH:/usr/lib/postgresql/15/bin
+fi
+
+if [ -d "${HOME}/.config/helix/runtime" ]; then
+    export HELIX_RUNTIME="${HOME}/.config/helix/runtime/runtime"
+fi
+
+# ==============
+# User Variables
+# ==============
+
+export EDITOR="/usr/bin/vim"
 
 # ===============
 # Window Settings
