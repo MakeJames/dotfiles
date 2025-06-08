@@ -37,6 +37,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'davidhalter/jedi-vim'
     Plug 'pechorin/any-jump.vim'
     Plug 'bagrat/vim-buffet'
+    Plug 'lervag/vimtex'
     Plug 'ryanoasis/vim-devicons'
 
 call plug#end()
@@ -101,6 +102,14 @@ augroup markdown_conceal
     autocmd InsertLeave *.md set conceallevel=2
 augroup END
 
+if executable('bash-language-server')
+  au User lsp_setup call lsp#register_server({
+        \ 'name': 'bash-language-server',
+        \ 'cmd': {server_info->['bash-language-server', 'start']},
+        \ 'allowlist': ['sh', 'bash'],
+        \ })
+endif
+
 let NERDTreeShowHidden=1
 " Start NERDTree and put the cursor back in the other window.
 autocmd VimEnter * NERDTree | wincmd p
@@ -153,6 +162,7 @@ let g:jedi#documentation_command = "K"
 let g:jedi#usages_command = "<leader>n"
 let g:jedi#completions_command = "<C-Space>"
 let g:jedi#rename_command = "<leader>r"
+let g:virtualenv_auto_activate = 1
 
 let g:VM_leader = "~"
 let g:VM_maps = {}
