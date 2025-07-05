@@ -3,5 +3,7 @@
 # Sets up your branch to track a remote branch. Assumes you mean
 # `origin/$branch-name`.
 
+set -o errexit
+
 branch=$(git rev-parse --abbrev-ref HEAD)
-git push --set-upstream origin $branch
+git push --set-upstream origin "${branch}"
