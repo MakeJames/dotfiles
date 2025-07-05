@@ -27,8 +27,11 @@ autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
 call plug#begin('~/.vim/plugged')
 
     Plug 'preservim/nerdtree' " file explorer
+    Plug 'tpope/vim-vinegar'
     Plug 'sonph/onehalf', { 'rtp': 'vim' } " colour theme
     Plug 'sheerun/vim-polyglot' " language support
+    Plug 'Raimondi/delimitMate' " close brackets
+    Plug 'tomtom/tcomment_vim' " comment blocks
     Plug 'bling/vim-airline' " status line
     Plug 'bling/vim-bufferline'
     Plug 'mg979/vim-visual-multi'
@@ -39,6 +42,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'bagrat/vim-buffet'
     Plug 'lervag/vimtex'
     Plug 'ryanoasis/vim-devicons'
+    Plug 'dense-analysis/ale'
 
 call plug#end()
 
@@ -58,7 +62,7 @@ set nowrap
 
 colorscheme onehalfdark
 
-highlight ColorColumn ctermbg=grey
+highlight ColorColumn ctermbg=darkgrey
 set colorcolumn=80
 
 set number
@@ -181,6 +185,8 @@ map <C-j> <C-W>j
 map <C-k> <C-W>k
 map <C-h> <C-W>h
 map <C-l> <C-W>l
+
+let g:tcomment#blank_lines=1
 
 let g:buffet_always_show_tabline=1
 let g:buffet_powerline_separators=1
