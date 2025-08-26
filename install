@@ -11,7 +11,7 @@ work_path=$(dirname "$(readlink -f "$0")")
 readonly script_name="${0##*/}"
 
 readonly options="a,h,m"
-readonly options_long="all,help,minimal,debug,bash,vim"
+readonly options_long="all,help,minimal,debug,bash,git,vim"
 readonly parse_options_err="81"
 
 # Set default flags
@@ -22,7 +22,7 @@ all=
 bash=
 vim=
 # bin=
-
+git=
 
 usage () {
     cat <<USAGE_TEXT
@@ -37,6 +37,8 @@ Configuration files
         Install all dotfiles
 --bash
         Install bash specific dotfiles.
+--git
+        Install git specific dotfiles.
 --vim
         Install vim specific dotfiles.
 
@@ -102,6 +104,10 @@ parse_options () {
                 bash="true"
                 shift
                 ;;
+            --git)
+                git="true"
+                shift
+                ;;
             --vim)
                 vim="true"
                 shift
@@ -159,6 +165,7 @@ if [ "${all}" = "true" ]; then
     log "Updating all dotfiles."
     bash="true"
     vim="true"
+    git="true"
 fi
 
 if [ "${bash}" = "true" ]; then
@@ -170,6 +177,13 @@ if [ "${bash}" = "true" ]; then
     fi
 
     link_files "${bash_files}"
+fi
+
+if [ "${git}" = "true" ]; then
+    log "Updating git files."
+    git_files="${work_path}/git"
+
+    link_files "${git_files}"
 fi
 
 if [ "${vim}" = "true" ]; then
