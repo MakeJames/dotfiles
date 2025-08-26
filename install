@@ -33,7 +33,7 @@ DESCRIPTION
 OPTIONS:
 
 Configuration files
---all
+-a, --all
         Install all dotfiles
 --bash
         Install bash specific dotfiles.
@@ -86,6 +86,11 @@ parse_options () {
     }
 
     eval set -- "${opts}"
+
+    if [ -z "${args[@]}" ]; then
+        usage
+        exit 0
+    fi
 
     while true; do
         case "${1}" in
